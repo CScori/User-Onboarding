@@ -9,7 +9,7 @@ const Form = (values, errors, touched, status) => {
     const [login, setLogin] = useState([]);
     useEffect(() => {
         if (status) {
-            setAnimals([...login, status]);
+            setLogin([...login, status]);
         }
     }, [status]);
 
@@ -68,8 +68,15 @@ const FormikForm = withFormik({
      email: Yup.string.email('Please Enter a Valid Email'),
      password: Yup.string.min(8, 'Please Enter a Password with 8 or more charachters, and letters and numbers')
     //  terms: Yup.string.required('Please Read and Agree to Terms of Service')
- })
-
+ }),
+handleSubmit(values, { setStatus }) {
+    axios
+    .post('"https://reqres.in/api/users/', values)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => console.log(err.res))
+}
  //handle
 })(Form)
 
