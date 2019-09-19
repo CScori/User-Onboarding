@@ -3,6 +3,16 @@ import * as Yup from 'yup'
 import { Button, FormGroup, Label } from 'reactstrap';
 import { withFormik, Form, Field } from 'formik'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const Cnt = styled.div`
+background: teal;
+opacity: 0.8;
+width: 300px;
+height: 200px;
+padding: 50px;
+border-radius: 25px;
+`
 
 const User = ({ values, errors, touched, status }) => {
 
@@ -14,7 +24,7 @@ const User = ({ values, errors, touched, status }) => {
     }, [status]);
 
     return (
-        <div>
+        <Cnt>
             <Form>
                 <FormGroup>
                     <Label htmlFor="name">Name
@@ -60,7 +70,7 @@ const User = ({ values, errors, touched, status }) => {
             </ul>
 
         ))}
-        </div>
+        </Cnt>
     )
 };
 

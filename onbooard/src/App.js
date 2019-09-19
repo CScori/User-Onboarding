@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const Back = styled.div`
 background: dodgerblue;
 height: 1000px;
+align-content: center;
 
 `
 function App() {
