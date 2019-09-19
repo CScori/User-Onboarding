@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import * as Yup from 'Yup'
 import { Button, Form, FormGroup, Label } from 'reactstrap';
-import { withFormik, Form, Field } from 'formik'
+import { withFormik, Form, Field, validateYupSchema } from 'formik'
 import axios from 'axios'
 
 const Form = (values, errors, touched, status) => {
@@ -21,7 +21,7 @@ const Form = (values, errors, touched, status) => {
                     <Field type="text" name="name" placeholder="First and Last Name" />
                     </Label>
                 </FormGroup>
-                {/* sex drop down */}
+                {/* genser drop down */}
                 {/* birthdate calendar */}
                 <FormGroup>
                     <Label htmlFor="email">Email
@@ -35,7 +35,7 @@ const Form = (values, errors, touched, status) => {
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="Terms"> Terms of Service
-                    <Field type="checkbox" name="terms">I accept and agree to Terms of Service</Field>
+                    <Field type="checkbox" name="terms" checked={values.terms}>I accept and agree to Terms of Service</Field>
                     </Label>
                 </FormGroup>
                 
@@ -52,10 +52,16 @@ const FormikForm = withFormik({
          name: name || "",
          email: email || "",
          password: password || "",
-         terms: terms || "",
+         terms: terms || false,
      }
- }  
- //valid
+ } , 
+ validateSchema: Yup.object().shape({
+     name: Yup.string.required('Please Enter First and Last Name'),
+     email: Yup.string.email('Please Enter a Valid Email'),
+     password: Yup.string.min(8, 'Please Enter a Password with 8 or more charachters, and letters and numbers')
+    //  terms: Yup.string.required('Please Read and Agree to Terms of Service')
+ })
+
  //handle
 })(Form)
 
