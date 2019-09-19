@@ -19,18 +19,26 @@ const Form = (values, errors, touched, status) => {
             <FormGroup>
                     <Label htmlFor="name">Name
                     <Field type="text" name="name" placeholder="First and Last Name" />
+                    {touched.name && errors.name && (
+          <p className="error">{errors.name}</p>
+        )}
                     </Label>
                 </FormGroup>
                 {/* genser drop down */}
                 {/* birthdate calendar */}
                 <FormGroup>
                     <Label htmlFor="email">Email
-                    <Field type="email" name="email" placeholder="Enter Personal Email" />
+                    <Field type="email" name="email" placeholder="Enter Personal Email" /> {touched.email && errors.email && (
+          <p className="error">{errors.email}</p>
+        )}
                     </Label>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="password">Password
                     <Field type="text" name="password" placeholder="Please Create a Unique Password" />
+                    {touched.password && errors.password && (
+          <p className="error">{errors.password}</p>
+        )}
                     </Label>
                 </FormGroup>
                 <FormGroup>
