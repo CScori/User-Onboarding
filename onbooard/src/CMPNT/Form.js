@@ -17,14 +17,16 @@ const Form = (values, errors, touched, status) => {
         <div>
             <Form>
             <FormGroup>
-                    <Label for="Name">Name</Label>
+                    <Label htmlFor="name">Name</Label>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="exampleEmail">Email</Label>
+                    <Label htmlFor="email">Email</Label>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="examplePassword">Password</Label>
-                
+                    <Label htmlFor="password">Password</Label>
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="check">Terms of Service</Label>
                 </FormGroup>
                 
                 <Button>Submit</Button>
@@ -34,4 +36,17 @@ const Form = (values, errors, touched, status) => {
     )
 }
 
-export default Form
+const FormikForm = withFormik({
+ mapPropsToValues({ name, email, password, check })  {
+     return {
+         name: name || "",
+         email: email || "",
+         password: password || "",
+         terms: terms || "",
+     }
+ }  
+ //valid
+ //handle
+})(Form)
+
+export default FormikForm
