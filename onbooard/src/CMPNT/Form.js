@@ -34,7 +34,19 @@ const User = ({ values, errors, touched, status }) => {
                         )}
                     </Label>
                 </FormGroup>
-                {/* genser drop down */}
+                <FormGroup>
+                    <Label htmlFor="role">Role
+                    <Field component="select" name="role">
+                    <option >Please select an option</option>        
+            <option value="student">Student</option>
+            <option value="lead">Lead</option>
+            <option value="teacher">Teacher</option>
+          </Field>
+                        {touched.role && errors.role && (
+                            <p className="error">{errors.role}</p>
+                        )}
+                    </Label>
+                </FormGroup>
                 {/* birthdate calendar */}
                 <FormGroup>
                     <Label htmlFor="email">Email
@@ -75,11 +87,12 @@ const User = ({ values, errors, touched, status }) => {
 };
 
 const FormikForm = withFormik({
-    mapPropsToValues({ name, email, password, terms }) {
+    mapPropsToValues({ name, email, password, terms, role }) {
         return {
             name: name || "",
             email: email || "",
             password: password || "",
+            role: role || "",
             terms: terms || false,
         }
     },
@@ -87,8 +100,10 @@ const FormikForm = withFormik({
     validateSchema: Yup.object().shape({
         name: Yup.string().required('Please Enter First and Last Name'),
         email: Yup.string().email('Please Enter a Valid Email'),
-        password: Yup.string().min(8, 'Please Enter a Password with 8 or more charachters, and letters and numbers')
-        //  terms: Yup.string.required('Please Read and Agree to Terms of Service')
+        password: Yup.string().min(8, 'Please Enter a Password with 8 or more charachters, and letters and numbers'),
+        role: Yup.string().oneOf(["student", "lead", "teacher"])
+        .required("Please choose one!"),
+        terms: Yup.boolean().required('Please Read and Agree to Terms of Service')
     }),
 
     handleSubmit(values, { setStatus }) {
