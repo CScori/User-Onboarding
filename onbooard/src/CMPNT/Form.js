@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import * as Yup from 'Yup'
-import { Button, Form, FormGroup, Label } from 'reactstrap';
+import { Button, FormGroup, Label } from 'reactstrap';
 import { withFormik, Form, Field, validateYupSchema } from 'formik'
 import axios from 'axios'
 
-const Form = (values, errors, touched, status) => {
+const User = (values, errors, touched, status) => {
 
     const [login, setLogin] = useState([]);
     useEffect(() => {
@@ -78,6 +78,6 @@ handleSubmit(values, { setStatus }) {
     .catch(err => console.log(err.res))
 }
  //handle
-})(Form)
+})(User)
 
 export default FormikForm

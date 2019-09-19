@@ -2,16 +2,16 @@ import React from 'react';
 import Form from './CMPNT/Form'
 import styled from 'styled-components'
 
-const App = styled.div`
+const Back = styled.div`
 background: dodgerblue;
 height: 1000px;
 
 `
 function App() {
   return (
-    <App className="App">
+    <Back className="App">
     <Form />
-    </App>
+    </Back>
   );
 }
 
